@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'forms-validation';
+  form = new FormGroup(
+    {
+      myTextField: new FormControl('', [Validators.required]),
+      myOtherTextField: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(3)
+      ])
+    },
+    { updateOn: 'submit' }
+  );
 }
